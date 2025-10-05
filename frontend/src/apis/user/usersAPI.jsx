@@ -1,5 +1,5 @@
 import api from '../axiosConfig';
-//=======Registration=====
+
 
 export const registerAPI = async (userData) => {
   try {
@@ -17,7 +17,7 @@ export const registerAPI = async (userData) => {
     throw err;
   }
 };
-//=======Login=====
+
 
 export const loginAPI = async (userData) => {
   try {
@@ -34,7 +34,7 @@ export const loginAPI = async (userData) => {
     throw err;
   }
 };
-//=======Check auth=====
+
 
 export const checkUserAuthStatusAPI = async () => {
   try {
@@ -47,7 +47,7 @@ export const checkUserAuthStatusAPI = async () => {
     throw err;
   }
 };
-//=======Logout =====
+
 
 export const logoutAPI = async () => {
   try {
@@ -61,7 +61,7 @@ export const logoutAPI = async () => {
     throw err;
   }
 };
-//=======Logout =====
+
 
 export const getUserProfileAPI = async () => {
   try {
