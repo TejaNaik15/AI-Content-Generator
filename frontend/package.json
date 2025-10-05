@@ -21,6 +21,7 @@
     "@tanstack/react-query-devtools": "^5.90.2",
     "autoprefixer": "^10.4.21",
     "axios": "^1.12.2",
+    "bcryptjs": "^3.0.2",
     "formik": "^2.4.6",
     "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
