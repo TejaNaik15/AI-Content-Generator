@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
 
-  //Make request using react query
+  
   const { isError, isLoading, data, isSuccess, error } = useQuery({
     queryFn: checkUserAuthStatusAPI,
     queryKey: ["checkAuth"],
@@ -20,20 +20,20 @@ export const AuthProvider = ({ children }) => {
       }
     }
   });
-  //update the authenticated user
+  
   useEffect(() => {
     if (isSuccess) {
-      // data is expected to be { isAuthenticated: true } from the server
-      // ensure we always store a boolean to avoid changing the state shape
+      
+    
       setIsAuthenticated(Boolean(data?.isAuthenticated));
     }
   }, [data, isSuccess]);
 
-  //Update the user auth after login
+  
   const login = () => {
     setIsAuthenticated(true);
   };
-  //Update the user auth after login
+  
   const logout = () => {
     setIsAuthenticated(false);
   };
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-//Custom hook
+
 export const useAuth = () => {
   return useContext(AuthContext);
 };
