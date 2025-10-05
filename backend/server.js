@@ -132,11 +132,13 @@ const corsOptions = {
       "http://localhost:5174",
       "http://localhost:5175",
       "http://localhost:5176",
+      "https://ai-content-generator-woad-nine.vercel.app/",
       "https://localhost:3000",
       "https://localhost:5173",
       "https://localhost:5174",
       "https://localhost:5175",
       "https://localhost:5176"
+      
     ];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
