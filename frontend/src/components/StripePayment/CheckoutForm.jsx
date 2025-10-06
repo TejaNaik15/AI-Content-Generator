@@ -16,6 +16,11 @@ const CheckoutForm = () => {
   const [searchParams] = useSearchParams();
   const plan = params.plan;
   const amount = searchParams.get("amount");
+  const appReturnUrl =
+    import.meta.env.VITE_APP_URL ??
+    (typeof window !== "undefined"
+      ? window.location.origin
+      : "https://ai-content-generator-woad-nine.vercel.app");
   const mutation = useMutation({
     mutationFn: createStripePaymentIntentAPI,
   });
