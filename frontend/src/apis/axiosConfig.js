@@ -4,7 +4,7 @@ const MAX_RETRIES = 2;
 const RETRY_DELAY = 1000; 
 
 
-const DEFAULT_BASE_URL = 'http://localhost:3000';
+const DEFAULT_BASE_URL = "https://ai-content-generator-backend-qfqj.onrender.com";
 const API_BASE_URL = import.meta?.env?.VITE_API_BASE_URL || DEFAULT_BASE_URL;
 
 
