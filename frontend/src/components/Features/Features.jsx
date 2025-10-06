@@ -1,4 +1,3 @@
-
 import {
   ArrowPathIcon,
   CloudArrowUpIcon,
@@ -49,7 +48,9 @@ export default function AppFeatures() {
           "Developer friendly",
         ]}
       />
-      <section className="relative isolate overflow-hidden py-24 sm:py-32">
+      <section className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.25),_rgba(17,24,39,0))]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(14,165,233,0.15),_rgba(17,24,39,0))]" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mt-4 max-w-2xl lg:mt-6 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
