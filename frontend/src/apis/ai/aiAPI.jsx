@@ -1,9 +1,9 @@
-import axios from "axios";
+import api from "../axiosConfig";
 
 export const generateContentAPI = async (prompt) => {
   try {
-    const response = await axios.post(
-      "http://localhost:3000/api/v1/ai/generate-content",
+    const response = await api.post(
+      "/api/v1/ai/generate-content",
       {
         prompt,
       },
@@ -22,8 +22,8 @@ export const generateContentAPI = async (prompt) => {
 
 export const checkAIStatusAPI = async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:3000/api/v1/ai/status",
+    const response = await api.get(
+      "/api/v1/ai/status",
       {
         withCredentials: true,
       }
