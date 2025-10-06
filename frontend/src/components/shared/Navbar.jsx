@@ -70,25 +70,39 @@ export default function Navbar() {
                         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </Button>
                     {isOpen && (
-                        <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
-                            {navItems.map((item) => (
-                                <Link key={item.title} to={item.href} className="flex justify-between items-center">
-                                    <span className="text-lg">{item.title}</span>
-                                    <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
-                                </Link>
-                            ))}
-                            {isAuthenticated ? (
-                                <Button variant="outline" className="mt-4" onClick={handleLogout}>Sign out</Button>
-                            ) : (
-                                <>
-                                    <Link to="/login">
-                                        <Button variant="outline" className="mt-4">Sign in</Button>
+                        <div className="absolute top-20 right-4 left-4 rounded-2xl border border-white/10 bg-black/90 px-6 py-6 shadow-2xl backdrop-blur-xl">
+                            <nav className="space-y-4">
+                                {navItems.map((item) => (
+                                    <Link
+                                        key={item.title}
+                                        to={item.href}
+                                        onClick={() => setOpen(false)}
+                                        className="flex items-center justify-between text-white"
+                                    >
+                                        <span className="text-base font-medium">{item.title}</span>
+                                        <MoveRight className="h-4 w-4 stroke-[1.5] text-white/60" />
                                     </Link>
-                                    <Link to="/register">
-                                        <Button className="mt-2">Get started</Button>
-                                    </Link>
-                                </>
-                            )}
+                                ))}
+                            </nav>
+                            <div className="mt-6 space-y-3">
+                                {isAuthenticated ? (
+                                    <Button variant="outline" className="w-full" onClick={() => {
+                                        setOpen(false);
+                                        handleLogout();
+                                    }}>
+                                        Sign out
+                                    </Button>
+                                ) : (
+                                    <>
+                                        <Link to="/login" onClick={() => setOpen(false)}>
+                                            <Button variant="outline" className="w-full">Sign in</Button>
+                                        </Link>
+                                        <Link to="/register" onClick={() => setOpen(false)}>
+                                            <Button className="w-full">Get started</Button>
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -96,4 +110,3 @@ export default function Navbar() {
         </header>
     );
 }
-
