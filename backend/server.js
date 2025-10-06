@@ -132,7 +132,7 @@ const corsOptions = {
       "http://localhost:5174",
       "http://localhost:5175",
       "http://localhost:5176",
-      "https://ai-content-generator-woad-nine.vercel.app/",
+      "https://ai-content-generator-woad-nine.vercel.app",
       "https://localhost:3000",
       "https://localhost:5173",
       "https://localhost:5174",
