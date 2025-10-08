@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const ContentHistory = require("../models/ContentHistory");
 const User = require("../models/User");
 
-// Initialize Gemini API with error handling
+
 let genAI;
 let isInitialized = false;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-pro';
@@ -23,21 +23,21 @@ const initializeGeminiAPI = () => {
   }
 };
 
-// Try to initialize on startup
+
 initializeGeminiAPI();
 
-// Validate AI readiness without consuming quota (supports Gemini or Groq)
+
 const validateGeminiAccess = async () => {
   try {
-    // If Groq key exists, consider service available (we'll catch runtime errors separately)
+    
     if (process.env.GROQ_API_KEY) {
       return { valid: true };
     }
-    // Otherwise require Google key and basic Gemini init
+    
     if (!process.env.GOOGLE_API_KEY) {
       return { valid: false, reason: "Missing GOOGLE_API_KEY" };
     }
-    // Try to initialize if not already initialized
+    
     if (!isInitialized && !initializeGeminiAPI()) {
       return { valid: false, reason: "AI service initialization failed" };
     }
@@ -61,7 +61,7 @@ const geminiController = asyncHandler(async (req, res) => {
     });
   }
   
-  // Verify user and their subscription status
+  
   const user = await User.findById(req?.user?.id);
   if (!user) {
     return res.status(404).json({ message: "User not found" });
