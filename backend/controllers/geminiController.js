@@ -53,7 +53,7 @@ const validateGeminiAccess = async () => {
 
 const geminiController = asyncHandler(async (req, res) => {
   const { prompt } = req.body;
-  // Validate prompt early to avoid unnecessary processing and 500s
+  
   if (typeof prompt !== 'string' || !prompt.trim()) {
     return res.status(400).json({
       message: "Invalid request",
@@ -67,7 +67,7 @@ const geminiController = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "User not found" });
   }
 
-  // Check request limit
+  
   if (user.apiRequestCount >= user.monthlyRequestCount) {
     return res.status(429).json({
       message: "API Request limit reached",
@@ -77,7 +77,7 @@ const geminiController = asyncHandler(async (req, res) => {
     });
   }
 
-  // Validate Gemini access before making the main request (lightweight)
+  
   const accessStatus = await validateGeminiAccess();
   if (!accessStatus.valid) {
     return res.status(503).json({
@@ -88,7 +88,7 @@ const geminiController = asyncHandler(async (req, res) => {
   }
 
   try {
-    // Try to initialize Gemini only if we are not using Groq
+    
     const usingGroq = !!process.env.GROQ_API_KEY;
     if (!usingGroq) {
       if (!isInitialized && !initializeGeminiAPI()) {
@@ -99,12 +99,12 @@ const geminiController = asyncHandler(async (req, res) => {
       }
     }
 
-    // Timeout guard
+  
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error('AI service timeout')), 30000);
     });
 
-    // If GROQ_API_KEY is present, use Groq provider
+    
     const useGroq = !!process.env.GROQ_API_KEY;
 
     const groqGenerate = async () => {
@@ -295,7 +295,7 @@ const geminiController = asyncHandler(async (req, res) => {
   }
 });
 
-// Add endpoint to check AI service status
+
 const checkGeminiStatus = asyncHandler(async (req, res) => {
   const status = await validateGeminiAccess();
   const usingGroq = !!process.env.GROQ_API_KEY;
