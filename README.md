@@ -413,18 +413,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 </div>
 
-For support, email support@yourapp.com or create an issue in the GitHub repository.
+For support, email tinkuteja740@gmail.com or create an issue in the GitHub repository.
 
-## 📊 Project Stats
 
-<div align="center">
-
-![GitHub stars](https://img.shields.io/github/stars/yourusername/ai-content-generator?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/ai-content-generator?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/ai-content-generator?style=for-the-badge)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/ai-content-generator?style=for-the-badge)
-
-</div>
 
 ---
 
@@ -436,3 +427,4 @@ For support, email support@yourapp.com or create an issue in the GitHub reposito
 ![Powered by AI](https://img.shields.io/badge/Powered%20by-AI-blue?style=for-the-badge)
 
 </div>
+
