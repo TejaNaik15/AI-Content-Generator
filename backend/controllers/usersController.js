@@ -3,26 +3,26 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
 
-//------Registration-----
+
 const register = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
-  //Validate
+  
   if (!username || !email || !password) {
     res.status(400);
     throw new Error("All fields are required");
   }
-  //Check the email is taken
+  
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
     throw new Error("User already exists");
   }
-  //Hash the user password
+  
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
 
-  // Always set Free plan and 5 credits for new users
+  
   const newUser = new User({
     username,
     password: hashedPassword,
@@ -32,12 +32,12 @@ const register = asyncHandler(async (req, res) => {
     apiRequestCount: 0,
   });
 
-  //Add the date the trial will end
+  
   newUser.trialExpires = new Date(
     new Date().getTime() + (newUser.trialPeriod || 3) * 24 * 60 * 60 * 1000
   );
 
-  //Save the user
+
   try {
     await newUser.save();
     res.json({
@@ -53,13 +53,13 @@ const register = asyncHandler(async (req, res) => {
     throw new Error("Registration failed. Please try again.");
   }
 });
-//------Get User Profile (ensure correct credits for Free plan)------
+
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
-  // Fix: Always set 5 credits for Free plan
+  
   if (user.subscriptionPlan === "Free" && user.monthlyRequestCount !== 5) {
     user.monthlyRequestCount = 5;
     await user.save();
@@ -67,38 +67,37 @@ const getUserProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ user });
 });
 
-//------Login---------
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  //check for user email
+  
   const user = await User.findOne({ email });
   if (!user) {
     res.status(401);
     throw new Error("Invalid email or password");
   }
-  //check if password is valid
+  
   const isMatch = await bcrypt.compare(password, user?.password);
   if (!isMatch) {
     res.status(401);
     throw new Error("Invalid email or password");
   }
-  //Generate token (jwt)
+  
   const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
-    expiresIn: "3d", //token expires in 3 days
+    expiresIn: "3d", 
   });
   console.log(token);
-  // set the token into cookie (http only) with iPhone Safari compatible settings
+  
   const isProd = process.env.NODE_ENV === 'production';
   res.cookie("token", token, {
     httpOnly: true,
-    secure: isProd, // required for cross-site cookies in production
-    sameSite: isProd ? "none" : "lax", // allow cross-site in prod, simpler in dev
-    maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days to match JWT expiry
-    path: '/', // explicit path for iPhone Safari
-    domain: isProd ? undefined : undefined // let browser set domain automatically
+    secure: isProd, 
+    sameSite: isProd ? "none" : "lax", 
+    maxAge: 3 * 24 * 60 * 60 * 1000, 
+    path: '/', 
+    domain: isProd ? undefined : undefined 
   });
 
-  //send the response
+  
   res.json({
     status: "success",
     _id: user?._id,
@@ -107,12 +106,12 @@ const login = asyncHandler(async (req, res) => {
     email: user?.email,
   });
 });
-//------Logout-----
+
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", { maxAge: 1 });
   res.status(200).json({ message: "Logged out successfully" });
 });
-//------Profile-----
+
 const userProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req?.user?.id)
     .select("-password")
@@ -128,7 +127,7 @@ const userProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
-//------Check user Auth Status-----
+
 const checkAuth = asyncHandler(async (req, res) => {
   try {
     const token = req.cookies?.token;
