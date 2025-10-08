@@ -3,12 +3,12 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const ContentHistory = require("../models/ContentHistory");
 const User = require("../models/User");
 
-//----Gemini AI Controller----
 
-// Initialize Gemini AI
+
+
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
-// Validate Gemini API key
+
 const validateGeminiKey = async () => {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -29,13 +29,13 @@ const validateGeminiKey = async () => {
 const openAIController = asyncHandler(async (req, res) => {
   const { prompt } = req.body;
   
-  // Verify user and their subscription status
+  
   const user = await User.findById(req?.user?.id);
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
 
-  // Double check the request limit
+  
   if (user.apiRequestCount >= user.monthlyRequestCount) {
     return res.status(429).json({
       message: "API Request limit reached",
@@ -46,7 +46,7 @@ const openAIController = asyncHandler(async (req, res) => {
   }
 
   try {
-    // Validate Gemini key before making the main request
+    
     const keyStatus = await validateGeminiKey();
     if (!keyStatus.valid) {
       return res.status(503).json({
@@ -58,10 +58,10 @@ const openAIController = asyncHandler(async (req, res) => {
       });
     }
 
-    // Initialize the model
+    
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     
-    // Generate content
+    
     const result = await model.generateContent(prompt);
     const content = await result.response.text();
     
@@ -69,19 +69,19 @@ const openAIController = asyncHandler(async (req, res) => {
       return res.status(500).json({ message: "No content generated from AI service" });
     }
 
-    // Create the history
+    
     const newContent = await ContentHistory.create({
       user: req?.user?._id,
       content,
       prompt,
     });
 
-    // Update user's history and request count
+    
     user.contentHistory.push(newContent?._id);
     user.apiRequestCount += 1;
     await user.save();
 
-    // Send response with additional info
+    
     res.status(200).json({
       content,
       requestsRemaining: user.monthlyRequestCount - user.apiRequestCount,
@@ -92,7 +92,7 @@ const openAIController = asyncHandler(async (req, res) => {
   } catch (error) {
     console.error("AI service error:", error);
     
-    // Handle specific error cases
+  
     if (error.message?.includes("quota")) {
       return res.status(503).json({
         message: "AI service temporarily unavailable",
@@ -117,7 +117,7 @@ const openAIController = asyncHandler(async (req, res) => {
   }
 });
 
-// Add an endpoint to check AI service status
+
 const checkAIStatus = asyncHandler(async (req, res) => {
   const status = await validateGeminiKey();
   res.json({
