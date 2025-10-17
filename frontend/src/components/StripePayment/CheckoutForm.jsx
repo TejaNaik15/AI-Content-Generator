@@ -10,7 +10,7 @@ import { createStripePaymentIntentAPI } from "../../apis/stripePayment/stripePay
 import StatusMessage from "../Alert/StatusMessage";
 
 const CheckoutForm = () => {
-  //Get the payloads
+  
   const params = useParams();
 
   const [searchParams] = useSearchParams();
@@ -25,13 +25,13 @@ const CheckoutForm = () => {
     mutationFn: createStripePaymentIntentAPI,
   });
 
-  //Stripe configuration
+
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
   console.log(amount);
 
-  //Handle submit
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (elements === null) {
@@ -42,12 +42,12 @@ const CheckoutForm = () => {
       return;
     }
     try {
-      //prepare our data for payment
+      
       const data = {
         amount,
         plan,
       };
-      //Make the http request
+      
       mutation.mutate(data);
 
       if (mutation?.isSuccess) {
@@ -75,12 +75,12 @@ const CheckoutForm = () => {
         <div className="mb-4">
           <PaymentElement />
         </div>
-        {/* Display loading */}
+      
         {mutation?.isPending && (
           <StatusMessage type="loading" message="Proccessing please wait..." />
         )}
 
-        {/* Display success */}
+      
         {mutation?.isError && (
           <StatusMessage
             type="error"
