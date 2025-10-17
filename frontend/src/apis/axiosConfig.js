@@ -3,24 +3,24 @@ import axios from 'axios';
 const MAX_RETRIES = 2;
 const RETRY_DELAY = 1000; 
 
-// Use Vite dev proxy in development to avoid CORS and cookie issues
+
 const isViteDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
 const isLocalHostName = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1|\[::1\]|::1)$/.test(window.location.hostname);
 
-// Resolve configured base URL and guard against localhost in production
+
 let resolvedBase = (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_API_BASE_URL)
   ? import.meta.env.VITE_API_BASE_URL
   : 'https://ai-content-generator-backend-qfqj.onrender.com';
 
 if (!isViteDev && !isLocalHostName && /^https?:\/\/(localhost|127\.0\.0\.1)/.test(resolvedBase)) {
-  // Guard: never use localhost API on non-local hosts (e.g., vercel.app)
+  
   console.warn('Overriding invalid production API base URL pointing to localhost:', resolvedBase);
   resolvedBase = 'https://ai-content-generator-backend-qfqj.onrender.com';
 }
 
 const API_BASE_URL = isViteDev
-  ? '' // relative path -> proxied to backend by Vite
-  : resolvedBase; // Always use production URL in production
+  ? '' 
+  : resolvedBase; 
 
 
 const api = axios.create({
