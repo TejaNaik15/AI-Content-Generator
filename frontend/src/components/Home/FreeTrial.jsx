@@ -44,7 +44,7 @@ export default function FreeTrial() {
         ease: "power3.out"
       }, "-=0.6");
 
-    // Animate orbs
+    
     gsap.to([orb1Ref.current, orb2Ref.current], {
       xPercent: "random(-20, 20)",
       yPercent: "random(-20, 20)",
@@ -59,12 +59,12 @@ export default function FreeTrial() {
 
   return (
     <section ref={sectionRef} className="relative isolate overflow-hidden bg-gray-900">
-      {/* Background gradients and effects */}
+      
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Main gradient background */}
+        
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/90 to-gray-900" />
         
-        {/* Glowing orbs */}
+        
         <div 
           ref={orb1Ref}
           className="absolute -left-[10%] top-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-violet-500/30 to-fuchsia-500/30 blur-3xl"
@@ -74,14 +74,14 @@ export default function FreeTrial() {
           className="absolute -right-[15%] top-3/4 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-cyan-500/30 to-blue-500/30 blur-3xl"
         />
         
-        {/* Noise gradient overlay */}
+        
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/30 mix-blend-overlay" />
       </div>
 
-      {/* Content */}
+      
       <div ref={contentRef} className="relative mx-auto px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl">
-          {/* Card with glass effect */}
+        
           <div className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 shadow-2xl backdrop-blur-xl sm:p-12">
             <div className="text-center">
               <h2 
@@ -109,7 +109,7 @@ export default function FreeTrial() {
                   to="free-plan"
                   className="group relative rounded-xl bg-gradient-to-b from-blue-500 to-indigo-600 px-5 py-3 text-sm font-light text-white transition-all duration-300 hover:from-blue-400 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                 >
-                  {/* Button shine effect */}
+                  
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <span className="relative z-10">Start 3 Day Free Trial</span>
                 </Link>
@@ -125,7 +125,7 @@ export default function FreeTrial() {
               </div>
             </div>
 
-            {/* Card shine effect */}
+            
             <div className="absolute inset-0 -z-10">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 opacity-0 transition-opacity duration-500 hover:opacity-100" />
               <div className="absolute bottom-0 left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
