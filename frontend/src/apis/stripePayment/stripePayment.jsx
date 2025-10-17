@@ -1,5 +1,5 @@
 import api from "../axiosConfig";
-//=======Stripe Payment=====
+
 
 export const handleFreeSubscriptionAPI = async () => {
   const response = await api.post(
@@ -11,7 +11,7 @@ export const handleFreeSubscriptionAPI = async () => {
   );
   return response?.data;
 };
-//=======Stripe  Payment intent=====
+
 
 export const createStripePaymentIntentAPI = async (payment) => {
   console.log(payment);
@@ -27,7 +27,7 @@ export const createStripePaymentIntentAPI = async (payment) => {
   );
   return response?.data;
 };
-//=======Verify  Payment =====
+
 
 export const verifyPaymentAPI = async (paymentId) => {
   const response = await api.post(
