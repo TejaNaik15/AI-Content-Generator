@@ -54,7 +54,7 @@ export default function HomeFeatures() {
     <section ref={containerRef} className="relative overflow-hidden bg-gray-900 py-20 sm:py-32">
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(0,0,0,0))]" />
       
-      {/* Glowing orbs */}
+      
       <div className="pointer-events-none absolute left-1/4 top-0 h-[800px] w-[600px] -translate-x-1/2 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.08),rgba(0,0,0,0))]" />
       <div className="pointer-events-none absolute right-1/4 top-1/3 h-[600px] w-[600px] translate-x-1/2 bg-[radial-gradient(circle_at_center,rgba(125,211,252,0.08),rgba(0,0,0,0))]" />
 
@@ -78,7 +78,7 @@ export default function HomeFeatures() {
               ref={el => cardRefs.current[index] = el}
               className="relative isolate flex flex-col gap-6 rounded-2xl border border-white/10 bg-gray-900 p-8 shadow-2xl"
             >
-              {/* Card Background Gradient */}
+              
               <div 
                 className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br opacity-10 blur-xl transition-opacity duration-500 group-hover:opacity-30"
                 style={{ 
@@ -86,10 +86,10 @@ export default function HomeFeatures() {
                 }} 
               />
 
-              {/* Card Glass Effect */}
+            
               <div className="absolute inset-0 -z-10 rounded-2xl bg-white/[0.02] backdrop-blur-3xl" />
 
-              {/* Card Content */}
+            
               <div className="flex flex-col gap-4">
                 <h3 className="text-2xl font-light tracking-tight text-white">
                   {feature.title}
@@ -99,7 +99,7 @@ export default function HomeFeatures() {
                 </p>
               </div>
 
-              {/* Card Bottom Shine */}
+              
               <div className="absolute bottom-0 left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             </div>
           ))}
@@ -144,7 +144,7 @@ export default function HomeFeatures() {
                   <div className="slider-container">
                     <div className="slide flex mb-16 items-start">
                       <div className="flex-shrink-0 flex mr-8 items-center justify-center w-16 h-16 rounded-full bg-indigo-700">
-                        {/* Icon or image */}
+                      
                       </div>
                       <div className="max-w-lg">
                         <h4 className="text-3xl font-medium text-white mb-8">
@@ -160,7 +160,7 @@ export default function HomeFeatures() {
                     </div>
                     <div className="slide flex mb-16 items-start">
                       <div className="flex-shrink-0 flex mr-8 items-center justify-center w-16 h-16 rounded-full bg-yellow-700">
-                        {/* Icon or image */}
+                        
                       </div>
                       <div className="max-w-lg">
                         <h4 className="text-3xl font-medium text-white mb-8">
@@ -176,7 +176,7 @@ export default function HomeFeatures() {
                     </div>
                     <div className="slide flex items-start">
                       <div className="flex-shrink-0 flex mr-8 items-center justify-center w-16 h-16 rounded-full bg-green-700">
-                        {/* Icon or image */}
+                        
                       </div>
                       <div className="max-w-lg">
                         <h4 className="text-3xl font-medium text-white mb-8">
