@@ -1,5 +1,5 @@
 const MobileSafeBackground = () => {
-  // iPhone-safe background with inline styles
+
   return (
     <div 
       className="absolute inset-0 w-full h-full"
