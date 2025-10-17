@@ -10,11 +10,11 @@ import { SplitText } from 'gsap/SplitText';
 import "./index.css";
 import App from "./App";
 
-// Register GSAP plugins
+
 gsap.registerPlugin(ScrollTrigger, SplitText);
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./AuthContext/AuthContext";
-//Stripe configuration
+
 const stripePromise = loadStripe(
   "pk_test_51LVGZED8n0ExDwA4ocq21Al6QdhH7mgu9wk26r0mOCAB1n4dYb8CwepGCH6BvQvggiyLogZjxQsSHNHrxPUoaha200iDWOiYVW"
 );
@@ -26,7 +26,7 @@ const options = {
 };
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-//React query client
+
 const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
@@ -41,7 +41,5 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();
