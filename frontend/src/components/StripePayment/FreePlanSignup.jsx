@@ -10,9 +10,9 @@ const FreePlanSignup = () => {
     features: ["5 Credits", "1 User", "Basic Support"],
   };
 
-  //mutation
+  
   const mutation = useMutation({ mutationFn: handleFreeSubscriptionAPI });
-  //Handle confirm payment
+
   const handleConfirmClick = () => {
     mutation.mutate();
   };
@@ -24,7 +24,7 @@ const FreePlanSignup = () => {
           Confirm Your {planDetails.name} Plan
         </h2>
 
-        {/*isError */}
+        
         {mutation?.isError && (
           <StatusMessage
             type="error"
@@ -32,12 +32,12 @@ const FreePlanSignup = () => {
           />
         )}
 
-        {/* isLoading */}
+  
         {mutation?.isPending && (
           <StatusMessage type="loading" message="Loading please wait..." />
         )}
 
-        {/* isSuccess */}
+  
         {mutation?.isSuccess && (
           <StatusMessage type="success" message="Plan has been upgraded" />
         )}
