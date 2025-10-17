@@ -11,7 +11,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     const [isOpen, setOpen] = useState(false);
 
-    // mutation for logout
+    
     const mutation = useMutation({ 
         mutationFn: logoutAPI,
         onSuccess: () => {
@@ -23,7 +23,7 @@ export default function Navbar() {
     const handleLogout = () => {
         mutation.mutate();
     };
-    // Merge navigation items from both navbars
+    
     const publicNav = [
         { title: "Home", href: "/" },
         { title: "Features", href: "/features" },
@@ -39,7 +39,7 @@ export default function Navbar() {
     return (
         <header className="w-full z-50 fixed top-0 left-0 bg-black/90 backdrop-blur-md border-b border-white/10">
             <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center px-4">
-                {/* Desktop Navigation */}
+            
                 <nav className="justify-start items-center gap-4 lg:flex hidden flex-row">
                     {navItems.map((item) => (
                         <Link key={item.title} to={item.href}>
@@ -48,7 +48,7 @@ export default function Navbar() {
                     ))}
                 </nav>
                 <div className="flex lg:justify-center">
-                    {/* <p className="font-semibold">TWBlocks</p> */}
+        
                 </div>
                 <div className="flex justify-end w-full gap-4">
                     {isAuthenticated ? (
