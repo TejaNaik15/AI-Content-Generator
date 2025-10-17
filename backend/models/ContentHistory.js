@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//Schema
+
 const historySchema = new mongoose.Schema(
   {
     user: {
@@ -17,7 +17,7 @@ const historySchema = new mongoose.Schema(
   }
 );
 
-//! Compile to form the model
+
 const ContentHistory = mongoose.model("ContentHistory", historySchema);
 
 module.exports = ContentHistory;
