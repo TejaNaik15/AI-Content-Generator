@@ -28,9 +28,9 @@ export default function Home() {
           "24/7 content generation"
         ]}
       />
-      {/* Homepage features */}
+      
       <HomeFeatures />
-      {/* Homepage CTA */}
+    
       <FreeTrial />
     </>
   );
