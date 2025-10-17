@@ -103,7 +103,7 @@ export default function Hero({
         <MobileSafeBackground />
 
         <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16">
-          {/* Badge */}
+        
           {badgeText && (
             <div ref={badgeRef} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm">
               <span className="text-[10px] font-light uppercase tracking-[0.08em] text-white/70">
@@ -116,7 +116,7 @@ export default function Hero({
             </div>
           )}
 
-          {/* Title */}
+          
           <h1
             ref={headerRef}
             className="max-w-2xl text-left text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
@@ -124,7 +124,7 @@ export default function Hero({
             {title}
           </h1>
 
-          {/* Description */}
+        
           <p
             ref={paraRef}
             className="max-w-xl text-left text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg"
@@ -132,7 +132,7 @@ export default function Hero({
             {description}
           </p>
 
-          {/* CTA Buttons */}
+          
           {ctaButtons.length > 0 && (
             <div ref={ctaRef} className="flex flex-wrap items-center gap-3 pt-2">
               {ctaButtons.map((button, index) => (
@@ -151,7 +151,7 @@ export default function Hero({
             </div>
           )}
 
-          {/* Micro Details */}
+          
           {microDetails.length > 0 && (
             <ul
               ref={microRef}
