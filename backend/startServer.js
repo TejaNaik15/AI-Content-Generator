@@ -2,7 +2,6 @@ const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-// Get the process ID using port 3000
 async function getProcessIdByPort(port) {
   return new Promise((resolve) => {
     const netstat = spawn('netstat', ['-ano']);
@@ -26,7 +25,7 @@ async function getProcessIdByPort(port) {
   });
 }
 
-// Kill process by ID
+
 async function killProcess(pid) {
   return new Promise((resolve) => {
     const taskkill = spawn('taskkill', ['/F', '/PID', pid]);
@@ -35,25 +34,19 @@ async function killProcess(pid) {
     });
   });
 }
-
-// Main function to start the server
 async function startServer() {
   try {
-    // Check if port 3000 is in use
     const pid = await getProcessIdByPort(3000);
     if (pid) {
       console.log(`Port 3000 is in use by process ${pid}. Attempting to kill...`);
       const killed = await killProcess(pid);
       if (killed) {
         console.log('Successfully killed previous process');
-        // Wait a moment for the port to be fully released
         await new Promise(resolve => setTimeout(resolve, 1000));
       } else {
         throw new Error('Failed to kill process using port 3000');
       }
     }
-
-    // Start the server
     const serverPath = path.join(__dirname, 'server.js');
     if (!fs.existsSync(serverPath)) {
       throw new Error('server.js not found!');
@@ -76,8 +69,6 @@ async function startServer() {
       clearTimeout(startupTimeout);
       setTimeout(startServer, 2000);
     });
-
-    // Handle server exit
     server.on('exit', (code) => {
       clearTimeout(startupTimeout);
       if (code !== 0 && code !== null) {
@@ -94,6 +85,4 @@ async function startServer() {
     process.exit(1);
   }
 }
-
-// Start the server
 startServer();
