@@ -6,7 +6,7 @@ const AuthRoute = ({ children }) => {
   const location = useLocation();
   const { isAuthenticated, isLoading, isError } = useAuth();
   
-  // For iPhone Safari - always allow access if localStorage says authenticated
+  
   const localAuth = (() => {
     try {
       const stored = localStorage.getItem('isAuthenticated');
@@ -14,7 +14,7 @@ const AuthRoute = ({ children }) => {
       if (stored === 'true' && timestamp) {
         const now = Date.now();
         const authTime = parseInt(timestamp);
-        // Valid for 24 hours
+      
         return (now - authTime) < 24 * 60 * 60 * 1000;
       }
       return false;
@@ -23,22 +23,22 @@ const AuthRoute = ({ children }) => {
     }
   })();
   
-  // iPhone Safari - if localStorage auth is valid, skip server check
+  
   if (localAuth) {
     return children;
   }
   
-  // Show loading while checking auth
+  
   if (isLoading) {
     return <AuthCheckingComponent />;
   }
   
-  // If authenticated via server, allow access
+  
   if (isAuthenticated) {
     return children;
   }
   
-  // Redirect to login
+
   return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
